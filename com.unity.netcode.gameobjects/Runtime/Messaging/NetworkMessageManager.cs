@@ -826,7 +826,7 @@ namespace Unity.Netcode
             return SendMessage(ref message, delivery, new PointerListWrapper<ulong>((ulong*)clientIds.GetUnsafePtr(), clientIds.Length));
         }
 
-        internal unsafe void ProcessSendQueues()
+        public unsafe void ProcessSendQueues()
         {
             if (StopProcessing)
             {
