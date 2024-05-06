@@ -36,15 +36,15 @@ namespace Unity.Netcode
 
         // This code works with UnityTransport because it updates its network
         // driver in the Update(). Other transports may not function the same.
-        public static void Exposed_ProcessIncomingMessageQueue(this NetworkManager mgr)
+        public void Exposed_ProcessIncomingMessageQueue()
         {
-            mgr.NetworkConfig.NetworkTransport.SendMessage("Update");
-            mgr.MessageManager.ProcessIncomingMessageQueue();
+            NetworkConfig.NetworkTransport.SendMessage("Update");
+            MessageManager.ProcessIncomingMessageQueue();
         }
-        public static void Exposed_ProcessSendQueues(this NetworkManager mgr)
+        public void Exposed_ProcessSendQueues()
         {
-            mgr.MessageManager.ProcessSendQueues();
-            mgr.NetworkConfig.NetworkTransport.SendMessage("Update");
+            MessageManager.ProcessSendQueues();
+            NetworkConfig.NetworkTransport.SendMessage("Update");
         }
 
 
