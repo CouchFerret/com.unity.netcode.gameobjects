@@ -34,6 +34,20 @@ namespace Unity.Netcode
 
 #pragma warning restore IDE1006 // restore naming rule violation check
 
+        // This code works with UnityTransport because it updates its network
+        // driver in the Update(). Other transports may not function the same.
+        public static void Exposed_ProcessIncomingMessageQueue(this NetworkManager mgr)
+        {
+            mgr.NetworkConfig.NetworkTransport.SendMessage("Update");
+            mgr.MessageManager.ProcessIncomingMessageQueue();
+        }
+        public static void Exposed_ProcessSendQueues(this NetworkManager mgr)
+        {
+            mgr.MessageManager.ProcessSendQueues();
+            mgr.NetworkConfig.NetworkTransport.SendMessage("Update");
+        }
+
+
         public void NetworkUpdate(NetworkUpdateStage updateStage)
         {
             switch (updateStage)
