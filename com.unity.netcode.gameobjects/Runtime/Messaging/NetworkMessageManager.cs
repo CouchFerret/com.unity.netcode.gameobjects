@@ -458,7 +458,7 @@ namespace Unity.Netcode
             }
         }
 
-        internal void ProcessIncomingMessageQueue()
+        public void ProcessIncomingMessageQueue()
         {
             if (StopProcessing)
             {
