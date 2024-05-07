@@ -38,13 +38,27 @@ namespace Unity.Netcode
         // driver in the Update(). Other transports may not function the same.
         public void Exposed_ProcessIncomingMessageQueue()
         {
-            NetworkConfig.NetworkTransport.SendMessage("Update");
-            MessageManager.ProcessIncomingMessageQueue();
+            try
+            {
+                NetworkConfig.NetworkTransport.SendMessage("Update");
+                MessageManager.ProcessIncomingMessageQueue();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
         }
         public void Exposed_ProcessSendQueues()
         {
-            MessageManager.ProcessSendQueues();
-            NetworkConfig.NetworkTransport.SendMessage("Update");
+            try
+            {
+                MessageManager.ProcessSendQueues();
+                NetworkConfig.NetworkTransport.SendMessage("Update");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
         }
 
 
